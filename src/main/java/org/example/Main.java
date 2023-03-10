@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.dao.AlunoDAO;
+import org.example.dao.DisciplinaDAO;
 import org.example.model.Aluno;
 import org.example.model.Disciplina;
 
@@ -9,19 +11,21 @@ import javax.persistence.Persistence;
 
 public class Main {
     public static void main(String[] args) {
-        Aluno pedro = new Aluno("Pedro", 5, 8.2);
-        Disciplina mat = new Disciplina("Matemática", 12);
+        Aluno aluno = new Aluno("Ângela", 5, 9.9);
+        Disciplina disciplina = new Disciplina("Orientação a objetos 2", 21);
 
         //Cria um Factory para instanciar um EntityManager, o factory usa unidades de persistencia para instanciar as conexões
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("aulaJPA");
 
         //Responsável pela conexão com o banco instanciado na factory.
         EntityManager em = factory.createEntityManager();
+        AlunoDAO alunoDAO = new AlunoDAO(em);
+        DisciplinaDAO disciplinaDAO = new DisciplinaDAO(em);
 
         //Iniciar a conexão com o banco.
         em.getTransaction().begin();
-        em.persist(pedro);
-        em.persist(mat);
+        alunoDAO.salvar(aluno);
+        disciplinaDAO.salvar(disciplina);
         em.getTransaction().commit();
         em.close();
     }

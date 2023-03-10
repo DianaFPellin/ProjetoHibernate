@@ -13,6 +13,9 @@ public class Aluno {
     @Column(name = "MEDIA_FINAL")
     private double media;
 
+    @ManyToOne
+    private Disciplina disciplina;
+
     public Aluno (String nome, int RA, double media) {
         this.nome = nome;
         this.RA = RA;
