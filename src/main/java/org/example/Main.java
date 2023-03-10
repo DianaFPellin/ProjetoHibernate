@@ -14,6 +14,7 @@ public class Main {
     public static void main(String[] args) {
         Aluno aluno = new Aluno("Ângela", 5, 9.9);
         Disciplina disciplina = new Disciplina("Orientação a objetos 2", 21);
+        Disciplina dis = new Disciplina();
 
         //Cria um Factory para instanciar um EntityManager, o factory usa unidades de persistencia para instanciar as conexões
 //        EntityManagerFactory factory = Persistence.createEntityManagerFactory("aulaJPA");
@@ -25,8 +26,12 @@ public class Main {
 
         //Iniciar a conexão com o banco.
         em.getTransaction().begin();
-        alunoDAO.salvar(aluno);
-        disciplinaDAO.salvar(disciplina);
+//        alunoDAO.salvar(aluno);
+//        disciplinaDAO.salvar(disciplina);
+
+        dis = disciplinaDAO.buscaDisciplinaById(5L);
+        disciplinaDAO.deletar(dis);
+
         em.getTransaction().commit();
         em.close();
     }

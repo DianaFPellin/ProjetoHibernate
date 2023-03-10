@@ -18,6 +18,10 @@ public class Disciplina {
         this.qtde_alunos = qtde_alunos;
     }
 
+    public Disciplina() {
+
+    }
+
     public String getNome() {
         return nome;
     }

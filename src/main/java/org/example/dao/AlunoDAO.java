@@ -24,8 +24,8 @@ public class AlunoDAO {
         this.em.remove(aluno);
     }
 
-    public Class<Aluno> buscaAluno(Long id) {
-        this.em.find(Aluno.class, id);
-        return Aluno.class;
+    public Aluno buscaAlunoById(long id) {
+        Aluno aluno = this.em.find(Aluno.class, id);
+        return aluno;
     }
 }
