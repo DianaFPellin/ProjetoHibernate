@@ -1,6 +1,7 @@
 package org.example.dao;
 
 import org.example.model.Aluno;
+import org.example.model.Disciplina;
 
 import javax.persistence.EntityManager;
 
@@ -18,4 +19,13 @@ public class AlunoDAO {
         this.em.persist(aluno);
     }
 
+    public void deletar(Aluno aluno) {
+        this.em.merge(aluno);
+        this.em.remove(aluno);
+    }
+
+    public Class<Aluno> buscaAluno(Long id) {
+        this.em.find(Aluno.class, id);
+        return Aluno.class;
+    }
 }

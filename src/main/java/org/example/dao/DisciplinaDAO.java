@@ -19,4 +19,15 @@ public class DisciplinaDAO {
             this.em.persist(disciplina);
         }
 
+        public void deletar(Disciplina disciplina) {
+//          Precisa garantir que o objeto excluído esteja sendo gerenciado pela JPA
+            this.em.merge(disciplina);
+            this.em.remove(disciplina);
+        }
+
+        public Class<Disciplina> buscaDisciplinaById(Long id) {
+            this.em.find(Disciplina.class, id);
+            return Disciplina.class;
+        }
+
 }

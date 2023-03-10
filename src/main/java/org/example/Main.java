@@ -4,6 +4,7 @@ import org.example.dao.AlunoDAO;
 import org.example.dao.DisciplinaDAO;
 import org.example.model.Aluno;
 import org.example.model.Disciplina;
+import org.example.util.Factory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -15,10 +16,10 @@ public class Main {
         Disciplina disciplina = new Disciplina("Orientação a objetos 2", 21);
 
         //Cria um Factory para instanciar um EntityManager, o factory usa unidades de persistencia para instanciar as conexões
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("aulaJPA");
+//        EntityManagerFactory factory = Persistence.createEntityManagerFactory("aulaJPA");
 
         //Responsável pela conexão com o banco instanciado na factory.
-        EntityManager em = factory.createEntityManager();
+        EntityManager em = Factory.getEntityManager();
         AlunoDAO alunoDAO = new AlunoDAO(em);
         DisciplinaDAO disciplinaDAO = new DisciplinaDAO(em);
 
